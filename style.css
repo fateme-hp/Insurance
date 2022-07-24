@@ -1,0 +1,68 @@
+@font-face {
+    font-family: anjoman;
+    src: url('/font/Anjoman-Regular.woff2');
+  }
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    color: inherit;
+    font-family: anjoman;
+  }
+body{
+    background-color: #6675bb1a;
+}
+  .container{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 20%;
+  }
+
+  #infoBox , #result{
+   margin: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+
+  }
+  #infoBox h1 {
+    margin-bottom: 15px;
+    padding: 20px;
+    font-size: 30px;
+    background-color: rgb(102, 117, 187);
+    color: #fff;
+  }
+  #carInfo{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px;
+    border-bottom: 2px solid #000;
+  }
+  #carInfo *{
+    margin: 5px;
+  }
+  #Insurance-selection{
+    padding: 15px;
+  }
+  #Insurance-selection *{
+    margin: 10px 5px;
+  }
+  button{
+    border: none;
+    outline: none;
+    background-color: rgb(102, 117, 187);
+    color: #fff;
+    padding: 8px ;
+    cursor: pointer;
+  }
+
+  #result{
+    display: none;
+  }
+  h2{
+    font-size: 20px;
+  }

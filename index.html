@@ -9,14 +9,16 @@
   </head>
   <body>
     <div class="container">
-      <form id="infoBox">
+      <form  action="#" id="infoBox">
         <h1>محاسبه آنلاین قیمت خودرو</h1>
         <div id="carInfo">
-          <label for=" ">مدل خودرو</label>
-          <select name="select">
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
+          <label for="model"> نوع وسیله</label>
+          <select name="select" id="model">
+            <option ></option>
+            <option >کمتر از 4 سیلندر</option>
+            <option >پیکان، پراید،سمند</option>
+            <option >سایر 4 سیلندر ها</option>
+            <option >بیش از 4 سیلندر</option>
           </select>
           <label for="year">سال ساخت</label>
           <select name="select" id="year">
@@ -24,8 +26,8 @@
           </select>
         </div>
         <div id="Insurance-selection">
-          <input type="radio" name="insurance" />ساده- شخص ثالث<br />
-          <input type="radio" name="insurance"  />کامل- شخص ثالث بابیمه بدنه<br />
+          <input type="radio" name="insurance" value="basic" />ساده- شخص ثالث<br />
+          <input type="radio" name="insurance" value="complete" />کامل- شخص ثالث بابیمه بدنه<br />
         </div>
         <button>محاسبه قیمت</button>
       </form>

@@ -68,6 +68,8 @@ body{
 
   #result{
     display: none;
+
+    padding: 30px;
   }
   h2{
     font-size: 20px;

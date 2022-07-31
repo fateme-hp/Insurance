@@ -7,12 +7,20 @@ const carInfo = document.querySelector("#carInfo"),
   InsuranceSelection = document.querySelector("#Insurance-selection"),
   result = document.querySelector("#result"),
   calcBtn = document.querySelector("button"),
+  form = document.querySelector("#infoBox"),
   year = document.querySelector("#year");
 
 //eventlistener
-calcBtn.addEventListener("click", carModel);
-calcBtn.addEventListener("click", YearImpact);
-calcBtn.addEventListener("click", InsuranceSelector);
+model.addEventListener("change", carModel);
+year.addEventListener("change", YearImpact);
+InsuranceSelection.addEventListener("click", InsuranceSelector);
+form.addEventListener("submit", FinalPrice);
+form.addEventListener('submit', function(e) {
+  e.preventDefault();});
+
+function appInit(){
+  calcBtn.disabled = true;
+}
 
 function generateYear() {
   let currentYear = new Date().getFullYear(),
@@ -29,14 +37,9 @@ for (let i = 0; i < 21; i++) {
   year.appendChild(yearCount);
 }
 
-// let Model = function () {
 
-//   const  car = model.value;
+function carModel() {
 
-// };
-
-function carModel(e) {
-  e.preventDefault();
   let car = model.value,
     basePrice;
   console.log(car);
@@ -58,26 +61,57 @@ function YearImpact() {
   let produce = year.value,
     gap = generateYear() - produce,
     decreaseRate = 1 - (gap *.03) ;
-
+console.log(decreaseRate);
     return decreaseRate
      
 }
+
+
 
  function InsuranceSelector() {
 
   if ( !InsuranceSelection.children[0].checked && !InsuranceSelection.children[2].checked){
     alert(" نوع بیمه را انتخاب کنید ")
   } else if (InsuranceSelection.children[0].checked){
-    console.log("basic");
-    return "basic "
+    return 1.3
   } else if (InsuranceSelection.children[2].checked){
-    console.log("complete");
-    return "complete"
+    
+    return 1.5
   } 
 
 
 
 }
-// YearImpact.prototype.decrease = function(){
 
-// }
+
+function FinalPrice ( produceYear, price, insurance){
+
+ produceYear = YearImpact(),
+  price = carModel(),
+  insurance = InsuranceSelector();
+console.log(produceYear*price*insurance);
+
+let receipt = document.createElement("pre");
+result.style.display="flex"
+
+result.appendChild(receipt);
+receipt.append(`
+قیمت نهایی: 
+${(produceYear*price*insurance)*1000000} تومان 
+
+مدل ماشین :
+${model.value}
+
+سال ساخت :
+${year.value}
+
+نوع بیمه :
+
+`)
+  
+  
+  
+//  return  (produceYear*price*insurance)*1000000;
+form.reset()
+  
+}

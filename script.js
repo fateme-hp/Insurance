@@ -10,8 +10,7 @@ const carInfo = document.querySelector("#carInfo"),
   form = document.querySelector("#infoBox"),
   year = document.querySelector("#year");
 
-//eventlistener
-// document.addEventListener("DOMContentLoaded",appInit)
+// eventlistener
 model.addEventListener("change", carModel);
 year.addEventListener("change", YearImpact);
 InsuranceSelection.addEventListener("click", InsuranceSelector);
@@ -19,9 +18,7 @@ form.addEventListener("submit", FinalPrice);
 form.addEventListener('submit', function(e) {
   e.preventDefault();});
 
-function appInit(){
-  calcBtn.disabled = true;
-}
+
 
 function generateYear() {
   let currentYear = new Date().getFullYear(),
@@ -78,7 +75,6 @@ function insuranceRate(percent){
   if ( !InsuranceSelection.children[0].checked && !InsuranceSelection.children[2].checked){
     alert(" نوع بیمه را انتخاب کنید ")
   } else if (InsuranceSelection.children[0].checked){
-    
     return insuranceRate(0)
   } else if (InsuranceSelection.children[2].checked){
     
@@ -91,33 +87,52 @@ function insuranceRate(percent){
 
 
 function FinalPrice ( produceYear, price, insurance){
-
+  
  produceYear = YearImpact(),
   price = carModel(),
   insurance = InsuranceSelector();
 console.log(produceYear*price*insurance);
 
-let receipt = document.createElement("pre");
+let receipt = document.createElement("pre"),
+spinner = document.createElement("img"),
+insuranceType;
 result.style.display="flex"
 
+if( insurance == 1){
+  insuranceType = "ساده";
+} else{
+  insuranceType = "کامل"
+}
+
+
 result.appendChild(receipt);
-receipt.append(`
-قیمت نهایی: 
-${produceYear*price*insurance} تومان 
+result.appendChild(spinner);
+spinner.src ="img/spinner.gif"
 
-مدل ماشین :
-${model.value}
+  
+setTimeout(() => {
+spinner.remove();
+  receipt.append(`
 
-سال ساخت :
-${year.value}
+  نوع بیمه : ${ insuranceType}
 
-نوع بیمه :
+  مدل ماشین : ${model.value}
 
-`)
+  سال ساخت : ${year.value}
+
+  قیمت نهایی: ${Math.round(produceYear*price*insurance)} تومان 
+  `)
+
+  form.reset()
+}
+,3000)
+setTimeout(() => {
+receipt.remove();
+result.style.display="none"
+
   
-  
-  
-//  return  (produceYear*price*insurance)*1000000;
-form.reset()
-  
+}
+,8000)
+
+
 }

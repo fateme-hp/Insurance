@@ -2,6 +2,10 @@
     font-family: anjoman;
     src: url('/font/Anjoman-Regular.woff2');
   }
+@font-face {
+    font-family: "anjoman num";
+    src: url('/font/Anjoman-FaNum-Regular.woff2');
+  }
 
 * {
     margin: 0;
@@ -10,15 +14,17 @@
     list-style: none;
     text-decoration: none;
     color: inherit;
-    font-family: anjoman;
+    font-family:"anjoman num", anjoman  ;
   }
 body{
     background-color: #6675bb1a;
 }
   .container{
     max-width: 1200px;
-    margin: 0 auto;
-    padding: 30px 20%;
+    margin: 8% auto;
+    display: flex;
+    justify-content: center;
+   
   }
 
   #infoBox , #result{
@@ -26,6 +32,7 @@ body{
     display: flex;
     flex-direction: column;
     background-color: #fff;
+    min-width: 400px;
 
   }
   #infoBox h1 {

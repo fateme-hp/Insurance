@@ -11,6 +11,7 @@ const carInfo = document.querySelector("#carInfo"),
   year = document.querySelector("#year");
 
 //eventlistener
+// document.addEventListener("DOMContentLoaded",appInit)
 model.addEventListener("change", carModel);
 year.addEventListener("change", YearImpact);
 InsuranceSelection.addEventListener("click", InsuranceSelector);
@@ -46,13 +47,13 @@ function carModel() {
   if (car == "") {
     alert("نوع وسیله را انتخاب کنید ");
   } else if (car == "کمتر از 4 سیلندر") {
-    basePrice = 2.35;
-  } else if (car == "ییکان، پراید،سمند") {
-    basePrice = 2.8;
+    basePrice = 2350000;
+  } else if (car == "پیکان، پراید،سمند") {
+    basePrice = 2800000;
   } else if (car == "سایر 4 سیلندر ها") {
-    basePrice = 3.4;
+    basePrice = 3400000;
   } else if (car == "بیش از 4 سیلندر") {
-    basePrice = 3.7;
+    basePrice = 3700000;
   }
   return basePrice;
 }
@@ -66,6 +67,10 @@ console.log(decreaseRate);
      
 }
 
+function insuranceRate(percent){
+
+  return 1 + percent
+}
 
 
  function InsuranceSelector() {
@@ -73,10 +78,11 @@ console.log(decreaseRate);
   if ( !InsuranceSelection.children[0].checked && !InsuranceSelection.children[2].checked){
     alert(" نوع بیمه را انتخاب کنید ")
   } else if (InsuranceSelection.children[0].checked){
-    return 1.3
+    
+    return insuranceRate(0)
   } else if (InsuranceSelection.children[2].checked){
     
-    return 1.5
+    return insuranceRate(.3)
   } 
 
 
@@ -97,7 +103,7 @@ result.style.display="flex"
 result.appendChild(receipt);
 receipt.append(`
 قیمت نهایی: 
-${(produceYear*price*insurance)*1000000} تومان 
+${produceYear*price*insurance} تومان 
 
 مدل ماشین :
 ${model.value}

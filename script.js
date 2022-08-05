@@ -28,7 +28,7 @@ form.addEventListener('submit', function(e) {
       if ( carMake ==="" || carYear ==="" || level===""){
         ui.displayMsg('لطفا همه ی فیلد ها را  پر کنید.')
       }else{
-        console.log("object");
+       new FinalPrice()
       }
 
 });
@@ -72,103 +72,104 @@ UserInterface.prototype.displayMsg = function(msg){
 
 
 
-// function carModel() {
+function carModel() {
 
-//   let car = model.value,
-//     basePrice;
-//   console.log(car);
-//   if (car == "") {
-//     alert("نوع وسیله را انتخاب کنید ");
-//   } else if (car == "کمتر از 4 سیلندر") {
-//     basePrice = 2350000;
-//   } else if (car == "پیکان، پراید،سمند") {
-//     basePrice = 2800000;
-//   } else if (car == "سایر 4 سیلندر ها") {
-//     basePrice = 3400000;
-//   } else if (car == "بیش از 4 سیلندر") {
-//     basePrice = 3700000;
-//   }
-//   return basePrice;
-// }
+  let car = model.value,
+    basePrice;
+  console.log(car);
+  if (car == "") {
+    alert("نوع وسیله را انتخاب کنید ");
+  } else if (car == "کمتر از 4 سیلندر") {
+    basePrice = 2350000;
+  } else if (car == "پیکان، پراید،سمند") {
+    basePrice = 2800000;
+  } else if (car == "سایر 4 سیلندر ها") {
+    basePrice = 3400000;
+  } else if (car == "بیش از 4 سیلندر") {
+    basePrice = 3700000;
+  }
+  return basePrice;
+}
 
-// function YearImpact() {
-//   let produce = year.value,
-//     gap = generateYear() - produce,
-//     decreaseRate = 1 - (gap *.03) ;
-// console.log(decreaseRate);
-//     return decreaseRate
+function YearImpact() {
+  let produce = year.value,
+  generateYear = Number( new Date().toLocaleDateString('fa-IR-u-nu-latn').slice(0,4)),
+    gap = generateYear - produce,
+    decreaseRate = 1 - (gap *.03) ;
+console.log(decreaseRate);
+    return decreaseRate
      
-// }
+}
 
-// function insuranceRate(percent){
+function insuranceRate(percent){
 
-//   return 1 + percent
-// }
+  return 1 + percent
+}
 
 
-//  function InsuranceSelector() {
+ function InsuranceSelector() {
 
-//   if ( !InsuranceSelection.children[0].checked && !InsuranceSelection.children[2].checked){
-//     alert(" نوع بیمه را انتخاب کنید ")
-//   } else if (InsuranceSelection.children[0].checked){
-//     return insuranceRate(0)
-//   } else if (InsuranceSelection.children[2].checked){
+  if ( !InsuranceSelection.children[0].checked && !InsuranceSelection.children[2].checked){
+    alert(" نوع بیمه را انتخاب کنید ")
+  } else if (InsuranceSelection.children[0].checked){
+    return insuranceRate(0)
+  } else if (InsuranceSelection.children[2].checked){
     
-//     return insuranceRate(.3)
-//   } 
+    return insuranceRate(.3)
+  } 
 
 
 
-// }
+}
 
 
-// function FinalPrice ( produceYear, price, insurance){
+function FinalPrice ( produceYear, price, insurance){
   
-//  produceYear = YearImpact(),
-//   price = carModel(),
-//   insurance = InsuranceSelector();
-// console.log(produceYear*price*insurance);
+ produceYear = YearImpact(),
+  price = carModel(),
+  insurance = InsuranceSelector();
+console.log(produceYear*price*insurance);
 
-// let receipt = document.createElement("pre"),
-// spinner = document.createElement("img"),
-// insuranceType;
-// result.style.display="flex"
+let receipt = document.createElement("pre"),
+spinner = document.createElement("img"),
+insuranceType;
+result.style.display="flex"
 
-// if( insurance == 1){
-//   insuranceType = "ساده";
-// } else{
-//   insuranceType = "کامل"
-// }
+if( insurance == 1){
+  insuranceType = "ساده";
+} else{
+  insuranceType = "کامل"
+}
 
 
-// result.appendChild(receipt);
-// result.appendChild(spinner);
-// spinner.src ="img/spinner.gif"
-
-  
-// setTimeout(() => {
-// spinner.remove();
-//   receipt.append(`
-
-//   نوع بیمه : ${ insuranceType}
-
-//   مدل ماشین : ${model.value}
-
-//   سال ساخت : ${year.value}
-
-//   قیمت نهایی: ${Math.round(produceYear*price*insurance)} تومان 
-//   `)
-
-//   form.reset()
-// }
-// ,3000)
-// setTimeout(() => {
-// receipt.remove();
-// result.style.display="none"
+result.appendChild(receipt);
+result.appendChild(spinner);
+spinner.src ="img/spinner.gif"
 
   
-// }
-// ,8000)
+setTimeout(() => {
+spinner.remove();
+  receipt.append(`
+
+  نوع بیمه : ${ insuranceType}
+
+  مدل ماشین : ${model.value}
+
+  سال ساخت : ${year.value}
+
+  قیمت نهایی: ${Math.round(produceYear*price*insurance)} تومان 
+  `)
+
+  form.reset()
+}
+,3000)
+setTimeout(() => {
+receipt.remove();
+result.style.display="none"
+
+  
+}
+,8000)
 
 
-// }
+}

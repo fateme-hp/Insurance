@@ -85,3 +85,14 @@ body{
     width: max-content;
   }
  
+  .error {
+    color: #ff0000;
+    border:2px solid #ffd5d5fa;
+    text-align: center;
+    padding: 10px;
+    background-image: url('img/error.gif');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;    
+  }
+ 
